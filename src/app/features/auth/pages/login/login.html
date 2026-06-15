@@ -11,9 +11,9 @@
                placeholder="libra.xy@gmail.com"
                [invalid]="hasError('email')">
         @if (hasError('email', 'required')) {
-          <span class="text-red-500 text-sm mt-1 block">Email is required</span>
+          <span class="text-red-500 text-xs mt-1 block">Email is required</span>
         } @else   if (hasError('email', 'email')) {
-          <span class="text-red-500 text-sm mt-1 block">Invalid email address</span>
+          <span class="text-red-500 text-xs mt-1 block">Invalid email address</span>
         }
       </div>
 
@@ -26,7 +26,7 @@
                placeholder="************"
                [invalid]="hasError('password')">
         @if (hasError('password', 'required')) {
-          <span class="text-red-500 text-sm mt-1 block">Password is required</span>
+          <span class="text-red-500 text-xs mt-1 block">Password is required</span>
         }
       </div>
 
