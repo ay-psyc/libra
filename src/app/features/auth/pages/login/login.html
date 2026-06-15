@@ -12,7 +12,7 @@
                [invalid]="hasError('email')">
         @if (hasError('email', 'required')) {
           <span class="text-red-500 text-xs mt-1 block">Email is required</span>
-        } @else   if (hasError('email', 'email')) {
+        } @else if (hasError('email', 'email')) {
           <span class="text-red-500 text-xs mt-1 block">Invalid email address</span>
         }
       </div>
