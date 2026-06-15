@@ -6,5 +6,6 @@ import { InputText } from 'primeng/inputtext';
   imports: [InputText],
   templateUrl: './verify-otp.html',
   styleUrl: './verify-otp.css',
+  standalone: true,
 })
 export class VerifyOtp {}
