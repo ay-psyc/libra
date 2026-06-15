@@ -6,5 +6,6 @@ import { InputText } from 'primeng/inputtext';
   imports: [InputText],
   templateUrl: './reset-password.html',
   styleUrl: './reset-password.css',
+  standalone:true
 })
 export class ResetPassword {}
