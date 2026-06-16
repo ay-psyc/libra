@@ -5,28 +5,58 @@
       more knowledge.
     </p>
 
-    <div class="mb-3">
-      <label class="mb-1 block text-sm" for="email">Email</label>
-      <input class="w-full" type="email" id="email" pInputText pSize="small" placeholder="libra.xy@gmail.com">
-    </div>
-
-    <div class="mb-3">
-      <label class="mb-1 block text-sm" for="password">Password</label>
-      <input class="w-full mb-2" type="password" id="password" pInputText pSize="small" placeholder="************">
-      <div class="text-xs text-gray-400">(Password should be at least 15 characters
-        OR at least 8 characters including a number and a lowercase letter.)
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="mb-1 block text-sm" for="email">Email</label>
+        <input formControlName="email" class="w-full" type="email" id="email" pInputText pSize="small"
+               placeholder="libra.xy@gmail.com"
+               [invalid]="hasError('email')">
+        @if (hasError('email', 'required')) {
+          <span class="text-red-500 text-xs mt-1 block">Email is required</span>
+        } @else if (hasError('email', 'email')) {
+          <span class="text-red-500 text-xs mt-1 block">Invalid email address</span>
+        }
       </div>
-    </div>
 
-    <div class="mb-5">
-      <label class="mb-1 block text-sm" for="username">Username</label>
-      <input class="w-full mb-2" type="text" id="username" pInputText pSize="small" placeholder="ay-psyc">
-      <div class="text-xs text-gray-400">(Username may only contain alphanumeric characters or single hyphens, and
-        cannot begin or end with a hyphen.)
+      <div class="mb-3">
+        <label class="mb-1 block text-sm" for="password">Password</label>
+        <input formControlName="password" class="w-full" type="password" id="password" pInputText pSize="small"
+               placeholder="************"
+               [invalid]="hasError('password')">
+        @if (hasError('password', 'required')) {
+          <span class="text-red-500 text-xs mt-1 block">Password is required</span>
+        } @else if (hasError('password', 'minlength')) {
+          <span class="text-red-500 text-xs mt-1 block">Password must be at least 8 characters</span>
+        } @else if (hasError('password', 'pattern')) {
+          <span class="text-red-500 text-xs mt-1 block">Password must include a number and a lowercase letter</span>
+        }
+        <div class="text-xs text-gray-400 mt-1">(Password should be at least 15 characters
+          OR at least 8 characters including a number and a lowercase letter.)
+        </div>
       </div>
-    </div>
 
-    <button class="bg-black text-white py-2 w-full rounded-md font-medium cursor-pointer mb-5">Register</button>
+      <div class="mb-5">
+        <label class="mb-1 block text-sm" for="username">Username</label>
+        <input formControlName="username" class="w-full" type="text" id="username" pInputText pSize="small"
+               placeholder="ay-psyc"
+               [invalid]="hasError('username')">
+        @if (hasError('username', 'required')) {
+          <span class="text-red-500 text-xs mt-1 block">Username is required</span>
+        } @else if (hasError('username', 'minlength')) {
+          <span class="text-red-500 text-xs mt-1 block">Username must be at least 3 characters</span>
+        } @else if (hasError('username', 'maxlength')) {
+          <span class="text-red-500 text-xs mt-1 block">Username must be at most 20 characters</span>
+        } @else if (hasError('username', 'pattern')) {
+          <span class="text-red-500 text-xs mt-1 block">Username may only contain letters, numbers, or single hyphens and cannot begin or end with a hyphen</span>
+        }
+        <div class="text-xs text-gray-400 mt-1">(Username may only contain alphanumeric characters or single hyphens,
+          and
+          cannot begin or end with a hyphen.)
+        </div>
+      </div>
+
+      <button class="bg-black text-white py-2 w-full rounded-md font-medium cursor-pointer mb-5">Register</button>
+    </form>
 
     <p class="text-center text-sm">Already have an account? <a routerLink="/login" class="text-blue-500">Sign
       In</a></p>

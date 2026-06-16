@@ -4,21 +4,34 @@
     <p class="text-xs mb-5 text-gray-500">Log in to rediscover your books, continue your progress, and keep the
       knowledge flowing.</p>
 
-    <div class="mb-3">
-      <label class="mb-1 block text-sm" for="email">Email</label>
-      <input class="w-full" type="email" id="email" pInputText pSize="small" placeholder="libra.xy@gmail.com">
-    </div>
-
-    <div class="mb-5">
-      <div class="flex justify-between">
-        <label class="mb-1 block text-sm" for="password">Password</label>
-        <a routerLink="/forgot-password" class="text-sm text-blue-500">Forgot Password?</a>
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label class="mb-1 block text-sm" for="email">Email</label>
+        <input formControlName="email" class="w-full" type="email" id="email" pInputText pSize="small"
+               placeholder="libra.xy@gmail.com"
+               [invalid]="hasError('email')">
+        @if (hasError('email', 'required')) {
+          <span class="text-red-500 text-xs mt-1 block">Email is required</span>
+        } @else if (hasError('email', 'email')) {
+          <span class="text-red-500 text-xs mt-1 block">Invalid email address</span>
+        }
       </div>
-      <input class="w-full" type="password" id="password" pInputText pSize="small" placeholder="************">
-    </div>
 
-    <button class="bg-black text-white py-2 w-full rounded-md font-medium mb-5 cursor-pointer">Login</button>
+      <div class="mb-5">
+        <div class="flex justify-between">
+          <label class="mb-1 block text-sm" for="password">Password</label>
+          <a routerLink="/forgot-password" class="text-sm text-blue-500">Forgot Password?</a>
+        </div>
+        <input formControlName="password" class="w-full" type="password" id="password" pInputText pSize="small"
+               placeholder="************"
+               [invalid]="hasError('password')">
+        @if (hasError('password', 'required')) {
+          <span class="text-red-500 text-xs mt-1 block">Password is required</span>
+        }
+      </div>
 
+      <button class="bg-black text-white py-2 w-full rounded-md font-medium mb-5 cursor-pointer">Login</button>
+    </form>
     <p class="text-center text-sm">Don't have an account? <a routerLink="/register" class="text-blue-500">Sign
       Up</a></p>
   </div>
