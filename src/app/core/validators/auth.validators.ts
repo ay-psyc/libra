@@ -16,3 +16,10 @@ export const UsernameValidator = [
   Validators.maxLength(20),
   Validators.pattern(/^[a-zA-Z0-9]+(-[a-zA-Z0-9]+)*$/),
 ];
+
+export const OtpValidator = [
+  Validators.required,
+  Validators.minLength(6),
+  Validators.maxLength(6),
+  Validators.pattern(/^[0-9]{6}$/),
+];
